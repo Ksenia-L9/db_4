@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  postgres-hw4:
+    image: postgres:14.5
+    command: -c 'config_file=/etc/postgresql/postgresql.conf'
+    environment:
+      POSTGRES_DB: "LEGOSTEVA_203"
+      POSTGRES_USER: "LEGOSTEVA_203"
+      POSTGRES_PASSWORD: "LEGOSTEVA_203"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ./docker/db/config/:/etc/postgresql/
+      - ./docker/db/scripts/:/docker-entrypoint-initdb.d
+      - ./docker/db/data/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
